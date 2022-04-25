@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add new Product | Farmer Panel</title>
+    <link rel="icon" type="image/png" href="/img/logo.jpg" />
+    <link href="/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/select2/select2.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>
+    <link href="/css/master.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <%- include('../sidebar') %>
+
+            <div id="body" class="active">
+                <!-- navbar navigation component -->
+                <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                    <button type="button" id="sidebarCollapse" class="btn btn-light">
+                    <i class="fas fa-bars"></i><span></span>
+                </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <div class="nav-dropdown">
+                                    <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-user"></i> <span><%= name %></span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end nav-link-menu">
+                                        <ul class="nav-list">
+                                            <li><a href="/farmer/logout" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- end of navbar navigation -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">Add new Product</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <form action="/product/upload" enctype="multipart/form-data" method="post">
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-2">Product Images</label>
+                                                <div class="col-sm-10">
+                                                    <input type="file" accept=".png" name="images" class="form-control" required multiple>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div><br>
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-2">Product Title</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="name" class="form-control" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="line"></div><br>
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-2">Product Description</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="desc" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div><br>
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-2">Product Quantity</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" name="quantity" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div><br>
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-2">Product Price</label>
+                                                <div class="col-sm-10">
+                                                    <div class="mb-3">
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text">₹</span>
+                                                            <input name="price" type="number" min="100" max="100000" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                            <span class="input-group-text">.00</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="businessId" value="<%= farmerID %>" />
+                                            <div class="line"></div><br>
+                                            <div class="mb-3 row">
+                                                <div class="col-sm-4">
+                                                    <button type="submit" class="btn btn-outline-success mb-2"><i class="fas fa-check"></i> Submit for Verification</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/form-validator.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/vendor/select2/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        $(".js-example-basic-multiple").select2();
+    </script>
+    <script>
+        var button = document.getElementById("enter");
+        var disBtn = document.getElementById("sizeBtn");
+        var limitBtn = document.getElementById("colorBtn");
+
+        var input = document.getElementById("specification");
+        var disadvantages = document.getElementById("sizes");
+        var limitations = document.getElementById("colors");
+
+        var adv = document.getElementById("product_spec");
+        var dis = document.getElementById("size");
+        var limit = document.getElementById("product_colors");
+
+        var ul = document.getElementById("list-spec");
+        var listD = document.getElementById("list-size");
+        var listL = document.getElementById("list-color");
+
+        var advArr = [];
+        var disArr = [];
+        var limitArr = [];
+
+        button.addEventListener("click", function() {
+            var li = document.createElement("li");
+            li.className = 'list-group-item';
+            li.textContent = input.value;
+            if (input.value == "") {
+                alert("Hard to Believe! Product without Specification");
+            } else {
+                ul.appendChild(li);
+                advArr.push(input.value);
+                adv.value = advArr
+                input.value = " ";
+            }
+        })
+
+        disBtn.addEventListener("click", function() {
+            var li = document.createElement("li");
+            li.className = 'list-group-item';
+            li.textContent = disadvantages.value;
+            if (disadvantages.value == "") {
+                alert("Enter Product Sizes");
+            } else {
+                listD.appendChild(li);
+                disArr.push(disadvantages.value);
+                dis.value = disArr
+                disadvantages.value = " ";
+            }
+        })
+
+        limitBtn.addEventListener("click", function() {
+            var li = document.createElement("li");
+            li.className = 'list-group-item';
+            li.textContent = limitations.value;
+            if (limitations.value == "") {
+                alert("Enter Product Colors");
+            } else {
+                listL.appendChild(li);
+                limitArr.push(limitations.value);
+                limit.value = limitArr
+                limitations.value = " ";
+            }
+        })
+    </script>
+</body>
+
+</html>

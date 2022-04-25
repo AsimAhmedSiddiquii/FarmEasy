@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Products | Farmer Panel</title>
+    <link rel="icon" type="image/png" href="/img/logo.jpg" />
+    <link href="/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/datatables/datatables.min.css" rel="stylesheet">
+    <link href="/css/master.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <%- include('../sidebar') %>
+
+            <!-- end of sidebar component -->
+            <div id="body" class="active">
+                <!-- navbar navigation component -->
+                <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                    <button type="button" id="sidebarCollapse" class="btn btn-light">
+                    <i class="fas fa-bars"></i><span></span>
+                </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <div class="nav-dropdown">
+                                    <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-user"></i> <span><%=name %></span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end nav-link-menu">
+                                        <ul class="nav-list">
+                                            <li><a href="/farmer/logout" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- end of navbar navigation -->
+                <div class="content">
+                    <div class="container">
+                        <div class="page-title">
+                            <h3>Products
+                                <a href="/farmer/add-product" class="btn btn-sm btn-outline-primary float-end"><i class="fas fa-plus-circle"></i> Add new Product</a>
+                            </h3>
+                        </div>
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Product Description</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Verified</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                        if(prodData.length!=0){
+                                        prodData.forEach(function(data){
+                                        %>
+                                            <tr>
+
+                                                <td>
+                                                    <%=data.name %>
+                                                </td>
+                                                <td>
+                                                    <%=data.desc %>
+                                                </td>
+                                                <td>
+                                                    <%=data.price %>
+                                                </td>
+                                                <td>
+                                                    <%=data.quantity %>
+                                                </td>
+                                                <td>
+                                                    <%=data.isVerified %>
+                                                </td>
+                                                <td class="text-end ">
+                                                    <a href="/product/remove/<%= data._id%>" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            <%  }) %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="6">No Products Available</td>
+                                                    </tr>
+                                                    <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/datatables/datatables.min.js"></script>
+    <script src="/js/initiate-datatables.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
