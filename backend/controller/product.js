@@ -10,16 +10,13 @@ const conn = mongoose.connection;
 
 conn.once("open", function() {
     gfs = Grid(conn.db, mongoose.mongo);
-
     gfs.collection("photos");
 });
 
 module.exports.viewProductImage = async(req, res, next) => {
     try {
         const file = await gfs.files.findOne({ filename: req.params.filename });
-
         const readStream = await gfs.createReadStream(file.filename);
-
         readStream.pipe(res);
     } catch (err) {
         console.log(err);
@@ -30,12 +27,9 @@ module.exports.viewProductImage = async(req, res, next) => {
 module.exports.uploadProduct = async(req, res, next) => {
     try {
         const newProduct = req.body;
-
         await Product.create(newProduct).then(result => {
             res.redirect("/farmer/products")
         });
-
-
     } catch (err) {
         console.log(err);
         next(err);

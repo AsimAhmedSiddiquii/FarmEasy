@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const farmerController = require("../controller/farmer");
 const Farmer = require("../models/farmer");
 const Product = require("../models/product");
+const Order = require("../models/order");
 
 farmerRouter.get("/image/:filename", farmerController.viewBusinessLogo);
 
@@ -69,7 +70,9 @@ farmerRouter.get('/register', (req, res) => {
 
 farmerRouter.get('/dashboard', (req, res) => {
     if (req.session.farmerName) {
-        Product.find().exec().then(prods => {
+        Product.find({
+            businessId: req.session.farmerID
+        }).exec().then(prods => {
             res.render('farmer/dashboard', { name: req.session.farmerName, noofprod: prods.length })
         })
     } else {
@@ -108,6 +111,31 @@ farmerRouter.get('/add-product', (req, res) => {
 
 farmerRouter.get('/unauthorized-access', (req, res) => {
     res.render('farmer/500')
+})
+
+farmerRouter.get('/orders', (req, res) => {
+    if (req.session.farmerID) {
+        var orders = [];
+        var del = [];
+        Order.find()
+            .populate('order.prodID')
+            .exec()
+            .then(docs => {
+                docs.forEach(element => {
+                    orders.push(element.order);
+                    del.push(element.status);
+                })
+                res.render('farmer/orders', { name: req.session.farmerName, ordData: orders, dstatus: del, farmerID: req.session.farmerID })
+            })
+            .catch(err => {
+                console.log(err)
+                res.status(500).json({
+                    error: err
+                })
+            })
+    } else {
+        res.redirect('/farmer/unauthorized-access')
+    }
 })
 
 farmerRouter.get("/logout", (req, res) => {

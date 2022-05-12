@@ -4,6 +4,8 @@ const session = require('express-session');
 
 const farmerRouter = require("./routes/farmer");
 const productRouter = require("./routes/product");
+const userRouter = require("./routes/users");
+const cartRoute = require("./routes/cart");
 
 app.use(session({
     secret: 'secret',
@@ -28,11 +30,14 @@ app.use('/font', express.static(__dirname + 'public/font'))
 app.use('/vendor', express.static(__dirname + 'public/vendor'))
 app.use('/components', express.static(__dirname + 'public/components'))
 app.use('/uploads', express.static(__dirname + 'public/uploads'))
+app.use('/boot', express.static(__dirname + 'public/boot'))
 
 app.set('views', '././views')
 app.set('view engine', 'ejs')
 
+app.use("/", userRouter);
 app.use("/farmer", farmerRouter);
 app.use("/product", productRouter);
+app.use("/cart", cartRoute);
 
 module.exports = app;

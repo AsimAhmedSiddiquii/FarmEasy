@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='copyright' content=''>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title Tag  -->
+    <title>Checkout | FarmEasy</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/img/logo.jpg">
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <!-- StyleSheet -->
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/boot/bootstrap.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="/boot/magnific-popup.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/boot/font-awesome.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="/boot/jquery.fancybox.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="/boot/themify-icons.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="/boot/niceselect.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="/boot/animate.css">
+    <!-- Flex Slider CSS -->
+    <link rel="stylesheet" href="/boot/flex-slider.min.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="/boot/owl-carousel.css">
+    <!-- Slicknav -->
+    <link rel="stylesheet" href="/boot/slicknav.min.css">
+
+    <!-- Eshop StyleSheet -->
+    <link rel="stylesheet" href="/boot/reset.css">
+    <link rel="stylesheet" href="/boot/style.css">
+    <link rel="stylesheet" href="/boot/responsive.css">
+
+</head>
+
+<body class="js">
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Preloader -->
+
+    <%- include('header') %>
+
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bread-inner">
+                            <ul class="bread-list">
+                                <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                                <li class="active"><a href="blog-single.html">Checkout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumbs -->
+
+        <!-- Start Checkout -->
+        <section class="shop checkout section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-12">
+                        <div class="checkout-form">
+                            <h2>Make Your Checkout Here</h2>
+                            <p>Please provide the below details in order to checkout more quickly!</p>
+                            <!-- Form -->
+                            <form class="form" id="checkForm" name="checkForm" action="/add-order" method="post">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label>First Name<span>*</span></label>
+                                            <input type="text" name="firstName" placeholder="Enter First Name" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label>Last Name<span>*</span></label>
+                                            <input type="text" name="lastName" placeholder="Enter Last Name" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label>Email Address<span>*</span></label>
+                                            <input type="email" name="email" placeholder="Enter Email Address" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label>Phone Number<span>*</span></label>
+                                            <input type="text" maxlength="10" name="mobile" placeholder="Enter Mobile Number" required="required">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label>Address<span>*</span></label>
+                                            <input type="text" name="address" placeholder="Enter Address" required="required">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Proceed to Pay</button>
+                                        </div>
+                                    </div>
+                                    <input id="razorpay_payment_id" name="razorpay_payment_id" value="ada" type="hidden" readonly />
+                                    <input id="razorpay_order_id" name="razorpay_order_id" value="ada" type="hidden" readonly />
+                                    <input id="razorpay_signature" name="razorpay_signature" value="ada" type="hidden" readonly />
+                                </div>
+                            </form>
+                            <!--/ End Form -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <div class="order-details">
+                            <!-- Order Widget -->
+                            <div class="single-widget">
+                                <h2>CART TOTALS</h2>
+                                <div class="content">
+                                    <ul>
+                                        <li>Sub Total<span>₹<%= amount %></span></li>
+                                        <li>(+) Shipping<span>Free</span></li>
+                                        <li class="last">Total<span>₹<%= amount %></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--/ End Order Widget -->
+                            <!-- Payment Method Widget -->
+                            <div class="single-widget payement">
+                                <div class="content">
+                                    <img src="/img/razor.png" alt="#">
+                                </div>
+                            </div>
+                            <!--/ End Payment Method Widget -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End Checkout -->
+
+
+        <%- include('footer') %>
+
+            <!-- Jquery -->
+            <script src="/boot/js/jquery.min.js"></script>
+            <script src="/boot/js/jquery-migrate-3.0.0.js"></script>
+            <script src="/boot/js/jquery-ui.min.js"></script>
+
+            <!-- Popper JS -->
+            <script src="/boot/js/popper.min.js"></script>
+            <!-- Bootstrap JS -->
+            <script src="/boot/js/bootstrap.min.js"></script>
+            <!-- Color JS -->
+            <script src="/boot/js/colors.js"></script>
+            <!-- Slicknav JS -->
+            <script src="/boot/js/slicknav.min.js"></script>
+            <!-- Owl Carousel JS -->
+            <script src="/boot/js/owl-carousel.js"></script>
+            <!-- Magnific Popup JS -->
+            <script src="/boot/js/magnific-popup.js"></script>
+            <!-- Waypoints JS -->
+            <script src="/boot/js/waypoints.min.js"></script>
+            <!-- Countdown JS -->
+            <script src="/boot/js/finalcountdown.min.js"></script>
+            <!-- Nice Select JS -->
+            <script src="/boot/js/nicesellect.js"></script>
+            <!-- Flex Slider JS -->
+            <script src="/boot/js/flex-slider.js"></script>
+            <!-- ScrollUp JS -->
+            <script src="/boot/js/scrollup.js"></script>
+            <!-- Onepage Nav JS -->
+            <script src="/boot/js/onepage-nav.min.js"></script>
+            <!-- Easing JS -->
+            <script src="/boot/js/easing.js"></script>
+            <!-- Active JS -->
+            <script src="/boot/js/active.js"></script>
+
+            <script>
+                var orderId;
+                $(document).ready(function() {
+                    var settings = {
+                        "url": "/create-order",
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "data": JSON.stringify({
+                            "amount": "<%= amount %>"
+                        }),
+                    };
+                    //creates new orderId everytime
+                    $.ajax(settings).done(function(response) {
+                        orderId = response.orderId;
+                    });
+                });
+            </script>
+
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script>
+                document.getElementById("checkForm").onsubmit = function(e) {
+                    var firstName = document.getElementById("firstName").value;
+                    var lastName = document.getElementById("lastName").value;
+                    var email = document.getElementById("email").value;
+                    var mobile = document.getElementById("mobile").value;
+                    var address = document.getElementById("address").value;
+                    var options = {
+                        "key": "rzp_test_gxQbz34RdLLLii",
+                        "amount": parseInt("<%= amount %>") * 100,
+                        "currency": "INR",
+                        "name": firstName + " " + lastName,
+                        "description": "Test",
+                        "image": "/img/logo.jpg",
+                        "order_id": orderId,
+                        "handler": function(response) {
+                            document.getElementById("razorpay_payment_id").value = response.razorpay_payment_id
+                            document.getElementById("razorpay_order_id").value = response.razorpay_order_id
+                            document.getElementById("razorpay_signature").value = response.razorpay_signature
+                            document.getElementById("checkForm").submit()
+                        },
+                        "prefill": {
+                            "name": firstName + " " + lastName,
+                            "email": email,
+                            "contact": mobile
+                        },
+                        "notes": {
+                            "address": address
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.on('payment.failed', function(response) {
+                        alert(response.error.reason);
+                    });
+                    rzp1.open();
+                    e.preventDefault();
+                }
+            </script>
+</body>
+
+</html>
