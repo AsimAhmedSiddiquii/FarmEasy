@@ -1,5 +1,11 @@
 # FarmEasy: Farmers Hub
 
+## Hosted site
+
+Customer: https://farmeasy-kjsce.herokuapp.com/
+<br/>
+Farmer: https://farmeasy-kjsce.herokuapp.com/farmer
+
 ## Problem Definition:
 - With this website, consumers can find nearby farmers using geolocation, purchase produce online, and pick up orders via
   curbside pickup to avoid direct contact. Farmers can easily manage items and fulfill orders as well. 
@@ -18,6 +24,12 @@
 First, clone the repository to your local machine:
 ```bash
 git clone https://github.com/AsimAhmedSiddiquii/Hall-and-Ground.git
+```
+
+Navigate to folder:
+
+```bash
+cd backend
 ```
 
 Install node modules:
